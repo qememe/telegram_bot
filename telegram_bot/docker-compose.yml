@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    environment:
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - PROXYAPI_KEY=${PROXYAPI_KEY}
+      - PROXYAPI_URL=${PROXYAPI_URL}
+      - DATABASE_URL=sqlite:///bot_data.db
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./bot_data.db:/app/bot_data.db
+    restart: unless-stopped
+
